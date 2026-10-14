@@ -3,7 +3,6 @@ package com.nur.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,6 +45,10 @@ public class EmployeeMcpController {
                 .user(request.message())
                 .call()
                 .content();
+
+        if (response == null || response.isBlank()) {
+            response = "No employee information was found matching your request.";
+        }
 
         return Map.of("response", response);
     }
