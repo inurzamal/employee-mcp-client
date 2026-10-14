@@ -14,6 +14,12 @@ public class ChatClientConfiguration {
             ToolCallbackProvider toolCallbackProvider) {
         return chatClientBuilder
                 .defaultTools(toolCallbackProvider)
+                .defaultSystem("""
+                        You are a helpful Employee Directory Assistant.
+                        Use the available MCP tools to look up employees, departments, and details.
+                        Always provide a clear, helpful, and natural language response based on the tool results.
+                        If no employees or departments match the search, clearly state that no records were found.
+                        """)
                 .build();
     }
 }
